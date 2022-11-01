@@ -2,12 +2,17 @@
 <h3>Please follow me</h3>
 
 <script>
+	//Парсинг массива Task
 	var js_data = '<?php echo json_encode($obj); ?>';
 	var jstruct = JSON.parse(js_data, function(key, value) {
 		if (key == "creationDate" || key == "startDate" || key == "deadline") return new Date(value);
 		return value;
 	});
+
+	//Количество элементов в массиве
 	var tasksCount = Object.keys(jstruct).length;
+
+	//Вывод инфы
 	document.write("[" + tasksCount + "]<br>");
 	for (let i = 0; i < tasksCount; ++i)
 	{
