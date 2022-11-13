@@ -23,6 +23,12 @@ class Task
 	    $this->deadline = $nDeadline;
    }
 
+   public static function fromSql(mysqli_result $res)
+   {
+        $usrdata = $res->fetch_row();
+        return new User($usrdata[0], $usrdata[1], $usrdata[2], $usrdata[3], $usrdata[4]);
+   }
+
    public function jsonSerialize()
     {
         $vars = get_object_vars($this);
