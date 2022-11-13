@@ -26,10 +26,10 @@ CREATE TABLE `task` (
   `UserID` int NOT NULL,
   `Name` varchar(45) UNIQUE NOT NULL,
   `Description` varchar(256) NOT NULL,
-  `CreationDate` DATE,
-  `Deadline` DATE,
+  `CreationDate` DATETIME,
+  `Deadline` DATETIME,
   `Priority` int NOT NULL,
-  `StartDate` DATE,  
+  `StartDate` DATETIME,  
   FOREIGN KEY (`UserID`) REFERENCES `user` (`ID`)
 );
 
@@ -40,3 +40,8 @@ Insert into `rights` (Name)
 
 Insert into `user` (Login, Password, Name, LastName, RightsID)
   values ("admin", "admin", "Avgname", "Avglastname", 2);
+
+INSERT INTO `task` (UserID, Name, Description, CreationDate, Deadline, Priority, StartDate) VALUES
+  (1, "Ride wife", "Life good", NOW(), "2022-11-15", 50, "2022-11-14"),
+  (1, "Wife fight back", "Kill wife", NOW(), "2022-11-16", 60, "2022-11-15"),
+  (1, "Think about wife", "Regret", NOW(), "2022-11-17", 70, "2022-11-16");
