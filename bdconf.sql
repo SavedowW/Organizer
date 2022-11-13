@@ -16,7 +16,7 @@ CREATE TABLE `user` (
   `Login` varchar(45) UNIQUE NOT NULL,
   `Password` varchar(60) NOT NULL,
   `Name` varchar(45) NOT NULL,
-  `Last name` varchar(45) NOT NULL,
+  `LastName` varchar(45) NOT NULL,
   `RightsID` int NOT NULL,
   FOREIGN KEY (`RightsID`) REFERENCES `rights` (`ID`)
 );
