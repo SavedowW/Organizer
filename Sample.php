@@ -22,9 +22,10 @@ Greetings, <?php echo htmlspecialchars($user->name); ?>:<?php echo htmlspecialch
 
 <?php
 
-$obj = array(new Task(0, 0, "Do work", "Please dont", 45, "2022-10-29", "2022-10-31", "2022-11-01"),
+/*$obj = array(new Task(0, 0, "Do work", "Please dont", 45, "2022-10-29", "2022-10-31", "2022-11-01"),
 	new Task(1, 0, "Run", "Run. Now.", 100, "2022-11-01", "2022-11-01", "2022-11-03"),
-	new Task(3, 0, "Fix stuff", "Not fixed an issue yet", 80, "2022-10-25", "2022-10-27", "2022-11-07"));
+	new Task(3, 0, "Fix stuff", "Not fixed an issue yet", 80, "2022-10-25", "2022-10-27", "2022-11-07"));*/
+$obj = Task::fromSql($_SESSION['DBACCESS']->getUserTasks($user->ID));
 
 echo json_encode($obj);
 

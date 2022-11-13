@@ -25,8 +25,15 @@ class Task
 
    public static function fromSql(mysqli_result $res)
    {
-        $usrdata = $res->fetch_row();
-        return new User($usrdata[0], $usrdata[1], $usrdata[2], $usrdata[3], $usrdata[4]);
+        $tasksdata = array();
+        $i = 0;
+        while ($taskdata = $res->fetch_row())
+        {
+            $tasksdata[$i] = new Task($taskdata[0], $taskdata[1], $taskdata[2],
+            $taskdata[3], $taskdata[4], $taskdata[5], $taskdata[6], $taskdata[7]);
+            $i++;
+        }
+        return $tasksdata;
    }
 
    public function jsonSerialize()
@@ -97,6 +104,15 @@ class DBAccess
 
         $req->bind_param("ssss", $nLogin, $nPassword, $nName, $nLastName);
         $req->execute();
+    }
+
+    public function getUserTasks(int $userID)
+    {
+        $req = $this->mysqli->prepare("SELECT ID, UserID, Name, Description, Priority, CreationDate, StartDate, Deadline from task where UserID = ?;");
+
+        $req->bind_param("i", $userID);
+        $req->execute();
+        return $req->get_result();
     }
 }
 ?>
