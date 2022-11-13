@@ -1,7 +1,12 @@
 <?php
+include("model.php");
+include("SessionControl.php");
 session_start();
 
 $_SESSION['LAST_ACTIVITY'] = time();
+
+$_SESSION['DBACCESS'] = new DBAccess(); 
+$_SESSION['DBACCESS']->connect();
 
 $regerror = "";
 $logerror = "";

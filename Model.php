@@ -55,14 +55,42 @@ class User
         return new User($usrdata[0], $usrdata[1], $usrdata[2], $usrdata[3], $usrdata[4]);
    }
 
-   /*function __construct(mysqli_result $res)
-	{
-        $usrdata = $res->fetch_row();
-        $this->ID = $usrdata[0];
-	    $this->login = $usrdata[1];
-        $this->password = $usrdata[2];
-        $this->name = $usrdata[3];
-        $this->lastName = $usrdata[4];
-   }*/
+}
+
+class DBAccess
+{
+    private $mysqli;
+    public function connect()
+    {
+        $this->mysqli = new mysqli("localhost", "root", "", "organizer");
+        
+    }
+
+    public function getLogPass(string $login, string $password)
+    {
+        $req = $this->mysqli->prepare("SELECT ID, Login, Password, Name, LastName FROM user WHERE login=? AND password=?;");
+
+        $req->bind_param("ss", $login, $password);
+        $req->execute();
+        return $req->get_result();
+    }
+
+    public function countUsers(string $login)
+    {
+        $req = $this->mysqli->prepare("SELECT count(ID) FROM user WHERE login=?;");
+
+        $req->bind_param("s", $login);
+        $req->execute();
+        return (int)$req->get_result()->fetch_row()[0];
+    }
+
+    public function addUser(string $nLogin, string $nPassword,
+        string $nName, string $nLastName)
+    {
+        $req = $this->mysqli->prepare("Insert into `user` (Login, Password, Name, LastName, RightsID) values (?, ?, ?, ?, 1);");
+
+        $req->bind_param("ssss", $nLogin, $nPassword, $nName, $nLastName);
+        $req->execute();
+    }
 }
 ?>

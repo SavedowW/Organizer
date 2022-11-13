@@ -1,16 +1,13 @@
 <?php
-session_start();
-
 include("model.php");
 include("SessionControl.php");
-
+session_start();
 checkSession();
 
-//Connect to bd
-$mysqli = new mysqli("localhost", "root", "", "organizer");
+$_SESSION['DBACCESS']->connect();
 
 //Check if login and password are correct
-$userdata = getLogPass($mysqli, $_POST['login'], $_POST['password']);
+$userdata = $_SESSION['DBACCESS']->getLogPass($_POST['login'], $_POST['password']);
 
 if ($userdata->num_rows == 0) //Return to login if logpass are incorrect
 {
