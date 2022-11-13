@@ -38,5 +38,5 @@ Insert into `rights` (Name)
   ('Admin'),
   ('User');
 
-Insert into user (Login, Password, Name, LastName, RightsID)
+Insert into `user` (Login, Password, Name, LastName, RightsID)
   values ("admin", "admin", "Avgname", "Avglastname", 2);
