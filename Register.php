@@ -6,11 +6,6 @@ include("SessionControl.php");
 
 checkSession();
 
-echo $_POST['login']." : ".strlen($_POST['login'])."<br>";
-echo $_POST['password']." : ".strlen($_POST['password'])."<br>";
-echo $_POST['name']." : ".strlen($_POST['name'])."<br>";
-echo $_POST['lastname']." : ".strlen($_POST['lastname'])."<br>";
-
 if (strlen($_POST['login']) == 0 ||
 	strlen($_POST['password']) == 0 ||
 	strlen($_POST['name']) == 0 || 
