@@ -23,6 +23,7 @@ class Task
 	    $this->deadline = $nDeadline;
    }
 
+   // PHP has no constructor overload
    public static function fromSql(mysqli_result $res)
    {
         $tasksdata = array();
@@ -36,6 +37,7 @@ class Task
         return $tasksdata;
    }
 
+   // For json_encode
    public function jsonSerialize()
     {
         $vars = get_object_vars($this);
@@ -62,6 +64,7 @@ class User
         $this->lastName = $nLastName;
    }
 
+   // PHP has no constructor overload
    public static function fromSql(mysqli_result $res)
    {
         $usrdata = $res->fetch_row();
@@ -73,12 +76,15 @@ class User
 class DBAccess
 {
     private $mysqli;
+
+    // Initializes connection
     public function connect()
     {
         $this->mysqli = new mysqli("localhost", "root", "", "organizer");
         
     }
 
+    // Get user with this login-password pair
     public function getLogPass(string $login, string $password)
     {
         $req = $this->mysqli->prepare("SELECT ID, Login, Password, Name, LastName FROM user WHERE login=? AND password=?;");
@@ -88,6 +94,7 @@ class DBAccess
         return $req->get_result();
     }
 
+    // Count users with this login
     public function countUsers(string $login)
     {
         $req = $this->mysqli->prepare("SELECT count(ID) FROM user WHERE login=?;");
@@ -97,6 +104,7 @@ class DBAccess
         return (int)$req->get_result()->fetch_row()[0];
     }
 
+    // Add user
     public function addUser(string $nLogin, string $nPassword,
         string $nName, string $nLastName)
     {
@@ -106,6 +114,7 @@ class DBAccess
         $req->execute();
     }
 
+    // Get tasks by userID
     public function getUserTasks(int $userID)
     {
         $req = $this->mysqli->prepare("SELECT ID, UserID, Name, Description, Priority, CreationDate, StartDate, Deadline from task where UserID = ?;");
