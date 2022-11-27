@@ -32,6 +32,6 @@ if ($userdata > 0) // Return to login with result code
 } else {
 	//Success
 	$_SESSION['DBACCESS']->addUser($_POST['regEmail'], $_POST['regPass1']);
-	header('Location: index.php?reason=0');
+	header('Location: index.php?reason=6');
 }
 ?>
