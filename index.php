@@ -19,11 +19,20 @@ if (isset($_GET['reason']))
 
 ?>
 
-<div id="dom-target" style="display: none;">
+<div id="dom-tasks" style="display: none;">
     <?php
         if (isset($_GET['reason']) && $_GET['reason'] == 4)
         {
             $output = json_encode($_SESSION['TASKS']);
+            echo htmlspecialchars($output);
+        }
+    ?>
+</div>
+<div id="dom-user" style="display: none;">
+    <?php
+        if (isset($_GET['reason']) && $_GET['reason'] == 4)
+        {
+            $output = json_encode($_SESSION['USER']);
             echo htmlspecialchars($output);
         }
     ?>
