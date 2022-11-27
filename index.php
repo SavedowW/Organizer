@@ -14,7 +14,7 @@ $_SESSION['DBACCESS']->connect();
 
 if (isset($_GET['reason']))
 {
-    echo "reason ".$_GET['reason']."<br>";
+    //echo "reason ".$_GET['reason']."<br>";
 }
 
 ?>
@@ -48,7 +48,7 @@ if (isset($_GET['reason']))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.b ootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="/Organizer/styles/styles.css">
+    <link rel="stylesheet" href="/styles/styles.css">
     <title>Органайзер</title>
 </head>
 <body>
@@ -63,7 +63,7 @@ if (isset($_GET['reason']))
                                 <h1>Онлайн органайзер</h1>
                             </td>
                             <td>
-                                <a href="#" id="admin-menu" class="admin-menu">
+                                <a href="#" id="admin-menu" class="admin-menu" onclick="closeOpenAdminMenu();">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
                                             <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
@@ -492,6 +492,24 @@ if (isset($_GET['reason']))
         </div>
     </span>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="/Organizer/scripts/script.js"></script>
+    <script src="/scripts/script.js"></script>
+    <script>
+        var reason = '<?php echo $_GET['reason'];?>';
+        
+        if (reason == 5) {
+            alert('Неправильный логин и/или пароль');
+            //closeOpenAdminMenu();
+        } else if (reason == 4) {
+            alert('Вы вошли');
+        } else if (reason == 3) {
+            alert('Данный пользователь уже зарегистрирован');
+        } else if (reason == 2) {
+            alert('Пароли не совпали');
+        } else if (reason == 1) {
+            alert('Поля для регистрации пустые');
+        } else if (reason == 6) {
+            alert('Вы зарегистрировались');
+        }
+</script>
 </body>
 </html>

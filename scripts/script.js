@@ -1,4 +1,4 @@
-document.getElementById('admin-menu').onclick = function() {
+function closeOpenAdminMenu() {
     var el = document.getElementById('fancybox-wrap');
     el.style.display === 'none' ? el.style.display = 'block' : el.style.display = 'none';
     el = document.getElementById('overlay');
