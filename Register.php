@@ -6,17 +6,24 @@ checkSession();
 
 $_SESSION['DBACCESS']->connect();
 
-if (strlen($_POST['login']) == 0 ||
-	strlen($_POST['password']) == 0 ||
-	strlen($_POST['name']) == 0 || 
-	strlen($_POST['lastname']) == 0)
+if (strlen($_POST['regEmail']) == 0 ||
+	strlen($_POST['regPass1']) == 0 ||
+	strlen($_POST['regPass2']) == 0 )
 {
-	header('Location: index.php?reason=5');
+	// Some fields are empty
+	header('Location: index.php?reason=1');
+	exit();
+}
+
+if ($_POST['regPass1'] != $_POST['regPass2'])
+{
+	// Passwords are different
+	header('Location: index.php?reason=2');
 	exit();
 }
 
 //Check if login and password are correct
-$userdata = $_SESSION['DBACCESS']->countUsers($_POST['login']);
+$userdata = $_SESSION['DBACCESS']->countUsers($_POST['regEmail']);
 
 if ($userdata > 0) // Return to login with result code
 {
@@ -24,7 +31,7 @@ if ($userdata > 0) // Return to login with result code
 	header('Location: index.php?reason=3');
 } else {
 	//Success
-	$_SESSION['DBACCESS']->addUser($_POST['login'], $_POST['password'], $_POST['name'], $_POST['lastname']);
-	header('Location: index.php?reason=4');
+	$_SESSION['DBACCESS']->addUser($_POST['regEmail'], $_POST['regPass1']);
+	header('Location: index.php?reason=0');
 }
 ?>

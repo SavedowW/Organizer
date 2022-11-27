@@ -15,8 +15,6 @@ CREATE TABLE `user` (
   `ID` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `Login` varchar(45) UNIQUE NOT NULL,
   `Password` varchar(60) NOT NULL,
-  `Name` varchar(45) NOT NULL,
-  `LastName` varchar(45) NOT NULL,
   `RightsID` int NOT NULL,
   FOREIGN KEY (`RightsID`) REFERENCES `rights` (`ID`)
 );
@@ -38,8 +36,8 @@ Insert into `rights` (Name)
   ('Admin'),
   ('User');
 
-Insert into `user` (Login, Password, Name, LastName, RightsID)
-  values ("admin", "admin", "Avgname", "Avglastname", 2);
+Insert into `user` (Login, Password, RightsID)
+  values ("admin@gmail.com", "admin", 2);
 
 INSERT INTO `task` (UserID, Name, Description, CreationDate, Deadline, Priority, StartDate) VALUES
   (1, "Ride wife", "Life good", CURDATE(), "2022-11-15", 50, "2022-11-14"),

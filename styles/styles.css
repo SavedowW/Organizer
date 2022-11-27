@@ -1,0 +1,318 @@
+element.style {
+    height: 939px;
+}
+.main {
+    width: 100%;
+    max-width: inherit;
+}
+.emptyframe {
+    margin: 0 auto;
+    max-width: 940px;
+    min-width: 100px;
+    background: initial;
+}
+body, html {
+    overflow: hidden;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    -webkit-overflow-scrolling: auto;
+    color: #161616;
+    font: 100%/1.25em Verdana,Arial,sans-serif;
+    font-size: 14px;
+    background-color: #4e8864;
+    margin: 0;
+    padding: 0;
+}
+body {
+    width: 100%;
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 18px;
+    color: #404040;
+    display: block;
+    margin: 0px;
+    color: white;
+}
+#body header {
+    width: 100%;
+    background: #0f9d58;
+    -webkit-box-shadow: 0 0 20px rgb(0 0 0 / 30%);
+    box-shadow: 0 0 20px rgb(0 0 0 / 30%);
+}
+#serviceHeader {
+    background: rgba(0,0,0,0.7);
+    box-shadow: none;
+    position: relative;
+    width: 100%;
+
+}
+.services-menu-icon {
+    margin-left: 5px;
+    margin-right: 10px;
+}
+.admin-menu{
+    position: fixed;
+    top: 15px;
+    right: 40px;
+    list-style-type: none;
+}
+
+.ui-tabs {
+    grid-area: nav;
+    padding-left: 10px;
+    padding-top: 10px;
+    list-style-type: none;
+    line-height: 2;
+    background-color: rgba(0,0,0,0.7);
+    border: solid 3px #05386B;
+    border-radius: 3px;
+    font-size: 20px;
+
+}
+
+a:hover,
+a {
+    text-decoration: none;
+    color: white;
+}
+
+#tabsmain{
+    display: grid;
+    grid-template-areas: "nav main"
+    "nav prio"
+    "nav urg";
+    grid-template-columns: 200px 800px;
+    grid-template-rows: 200px 200px 200px;
+    margin: 0;
+    grid-gap: 10px;
+}
+
+#overlay{
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 20000;
+    cursor: pointer;
+    background-color: black;
+    opacity: 0.7;
+    top: 0px;
+}
+
+#fancybox-wrap {
+    position: absolute;
+    margin: auto;
+    z-index: 20001;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 360px;
+    height: 300px;
+    border: solid 3px black;
+    border-radius: 3px;
+}
+
+#fancybox-content {
+    margin-top: 10px;
+}
+
+.ui-tabs-nav {
+    display: flex;
+    font-size: 20px;
+}
+
+.login {
+    margin-right: 15px;
+    padding-right: 10%;
+    padding-left: 5%;
+}
+
+.registration {
+    padding-left: 10%;
+    padding-right: 5%;
+}
+
+.close {
+    margin-top: -3px;
+    margin-left: -1px;
+}
+
+#auth {
+    margin: 10px;
+    display: block;
+}
+
+#idAuthUser, #idAuthPass {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 15%;
+    height: 40px;
+}
+
+.authButton{
+    margin-left: 70%;
+    margin-top: 22px;
+    height: 35px;
+    width: 65px;
+}
+
+#reg {
+    margin: 10px;
+    display: none; /*block*/
+}
+
+#idRegEmail, #idRegPass, #idRegPassConf {
+    width: 80%;
+    margin-top: 6%;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 40px;
+}
+
+.regButton {
+    margin-left: 63%;
+    margin-top: 19px;
+    height: 35px;
+}
+
+li {
+    list-style-type: none;
+}
+.ui-tabs-panel{
+    grid-area: main;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.addNewtaskbtn {
+    background-color: #05386B;
+    color: white;
+    font-size: 20px;
+    height: 30px;
+    width: 160px;
+    text-align: start;
+}
+
+#tabs-priorities{
+    grid-area: prio;
+}
+
+#tabs-urgensy{
+    grid-area: urg;
+}
+
+.bibi-border-all, .bibi-bar-chart-line, .bibi-card-list{
+    padding-right: 5px;
+}
+
+.urgency-table {
+    border: solid 4px black;
+    height: 720px;
+    width: 720px;
+}
+
+#urgency-box>table td {
+    border: solid 1px black;
+    text-align: center;
+}
+
+#tasks {
+    margin-left: 15px;
+}
+
+.newTaskName {
+    width: 400px;
+}
+
+.taskItem {
+    border: solid 2px black;
+    height: 40px;
+    border-radius: 2px;
+    margin-top: 9px;
+}
+
+.taskLine {
+    background-color: rgb(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+}
+
+input[type=checkbox] {
+    width: 20px;
+    height: 27px;
+    margin-left: 5px;
+    margin-top: 3px;
+}
+
+#taskName {
+    text-align: left;
+    width: 470px;
+    height: 25px;
+    margin-left: 5px;
+    margin-bottom: 0px;
+    padding-top: 2px;
+}
+
+#taskSettings {
+    margin-right: 5px;
+}
+
+.taskSettingsContainer {
+    min-width: 500px;
+    position: fixed;
+    width: 800px;
+    height: 700px;
+    margin-left: 50px;
+    margin-top: -6px;
+    background-color: rgb(0, 0, 0, 0.7);
+    border: solid 2px black;
+    border-radius: 2px;
+}
+
+#taskSettingsPanel {
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+#taskNameSet {
+    display: block;
+    padding: 3px;
+    margin-left: 10px;
+    /*background-color: #041e38;*/
+    color: white;
+    border-radius: 3px;
+}
+
+#startTask {
+    background-color: #041e38;
+    color: white;
+    margin-left: -107px;
+    margin-right: 3px;
+}
+
+#endTask {
+    background-color: #041e38;
+    color: white;
+    margin-left: -45px;
+}
+
+#prioritySettings{
+    background-color: #041e38;
+    color: white;
+    margin-left: -25px;
+}
+
+#saveSettingsBtn, #deleteSettingsBtn{
+    background-color: #041e38;
+    color: white;
+    font-size: 20px;
+    height: 30px;
+    width: 135px;
+    text-align: start;
+}

@@ -51,24 +51,19 @@ class User
     public $ID = 0;
     public $login = "";
     public $password = "";
-    public $name = "";
-    public $lastName = "";
 
-    function __construct(int $nID, string $nLogin, string $nPassword,
-        string $nName, string $nLastName)
+    function __construct(int $nID, string $nLogin, string $nPassword)
 	{
         $this->ID = $nID;
 	    $this->login = $nLogin;
         $this->password = $nPassword;
-        $this->name = $nName;
-        $this->lastName = $nLastName;
    }
 
    // PHP has no constructor overload
    public static function fromSql(mysqli_result $res)
    {
         $usrdata = $res->fetch_row();
-        return new User($usrdata[0], $usrdata[1], $usrdata[2], $usrdata[3], $usrdata[4]);
+        return new User($usrdata[0], $usrdata[1], $usrdata[2]);
    }
 
 }
@@ -87,7 +82,7 @@ class DBAccess
     // Get user with this login-password pair
     public function getLogPass(string $login, string $password)
     {
-        $req = $this->mysqli->prepare("SELECT ID, Login, Password, Name, LastName FROM user WHERE login=? AND password=?;");
+        $req = $this->mysqli->prepare("SELECT ID, Login, Password FROM user WHERE login=? AND password=?;");
 
         $req->bind_param("ss", $login, $password);
         $req->execute();
@@ -105,12 +100,11 @@ class DBAccess
     }
 
     // Add user
-    public function addUser(string $nLogin, string $nPassword,
-        string $nName, string $nLastName)
+    public function addUser(string $nLogin, string $nPassword)
     {
-        $req = $this->mysqli->prepare("Insert into `user` (Login, Password, Name, LastName, RightsID) values (?, ?, ?, ?, 1);");
+        $req = $this->mysqli->prepare("Insert into `user` (Login, Password, RightsID) values (?, ?, 1);");
 
-        $req->bind_param("ssss", $nLogin, $nPassword, $nName, $nLastName);
+        $req->bind_param("ss", $nLogin, $nPassword);
         $req->execute();
     }
 
