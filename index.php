@@ -12,11 +12,6 @@ $_SESSION['LAST_ACTIVITY'] = time();
 $_SESSION['DBACCESS'] = new DBAccess(); 
 $_SESSION['DBACCESS']->connect();
 
-if (isset($_GET['reason']))
-{
-    //echo "reason ".$_GET['reason']."<br>";
-}
-
 ?>
 
 <div id="dom-tasks" style="display: none;">
@@ -38,17 +33,12 @@ if (isset($_GET['reason']))
     ?>
 </div>
 
-<script>
-    var div = document.getElementById("dom-target");
-    var myData = div.textContent;
-</script>
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.b ootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="stylesheet" href="/Organizer/styles/styles.css">
     <title>Органайзер</title>
 </head>
 <body>
@@ -190,6 +180,15 @@ if (isset($_GET['reason']))
                                                                             <tr style="height: 100px;">
                                                                                 <td><button id="saveSettingsBtn">Сохранить</button></td>
                                                                                 <td><button id="deleteSettingsBtn">Удалить</button></td>
+                                                                            </tr>
+                                                                            <!-- MyStuff -->
+                                                                            <tr>
+                                                                                <td><p>Testing stuff</p></td>
+                                                                                <td><p id="receivedData" class="receivedData"></p></td>
+                                                                                <td>
+                                                                                <input class="stuffData" id="stuffData" x-webkit-speech speech title="Название stuffData" placeholder="Введите stuffData" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"> 
+                                                                                </td>
+                                                                                <td><button id="sendStuff">Отправить</button></td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -492,7 +491,7 @@ if (isset($_GET['reason']))
         </div>
     </span>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="/scripts/script.js"></script>
+    <script src="/Organizer/scripts/script.js"></script>
     <script>
         var reason = '<?php echo $_GET['reason'];?>';
         

@@ -75,7 +75,7 @@ class DBAccess
     // Initializes connection
     public function connect()
     {
-        $this->mysqli = new mysqli("localhost", "root", "1234", "organizer");
+        $this->mysqli = new mysqli("localhost", "root", "", "organizer");
         
     }
 
@@ -116,6 +116,15 @@ class DBAccess
         $req->bind_param("i", $userID);
         $req->execute();
         return $req->get_result();
+    }
+
+    // Add task
+    public function addTask(Task $task)
+    {
+        $req = $this->mysqli->prepare("INSERT INTO `task` (UserID, Name, Description, CreationDate, Deadline, Priority, StartDate) VALUES (?, ?, ?, ?, ?, ?, ?);");
+
+        $req->bind_param("issssis", $task->userID, $task->name, $task->description, $task->creationDate, $task->deadline, $task->priority, $task->startDate);
+        $req->execute();
     }
 }
 ?>

@@ -53,6 +53,27 @@ function closeOpenAdminMenu() {
     //alert(li.id);
   }
 
+  //Отправка каких нибудь данных
+  document.getElementById('sendStuff').onclick = function() {
+    let xhr = new XMLHttpRequest(); // Объект для запроса
+    url = "sendTask.php"; // Адрес куда отправить
+    let result = document.querySelector('.receivedData'); // Поле, куда вставлять результат
+    xhr.open("POST", url, true); // Открываем запрос
+    xhr.setRequestHeader("Content-Type", "application/json"); // Хэдер для json'а
+    var data = JSON.stringify({ "value": document.getElementById('stuffData').value }); // Запихиваем данные в json
+
+    // Колбек-функция для ответа на запрос
+    xhr.onreadystatechange = function () {
+      // Если все прошло нормально
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        // Вставляем эти данные для примера
+        result.innerHTML = this.responseText;
+      }
+    };
+
+    xhr.send(data); // Отправляем запрос
+  }
+
   function settingsBtn(el) {
     var nameTask = el.parentElement.parentElement.children[1].firstElementChild.innerText;
     var namePanel = document.getElementById('taskNameSet');
