@@ -53,21 +53,39 @@ function closeOpenAdminMenu() {
     //alert(li.id);
   }
 
-  //Отправка каких нибудь данных
-  document.getElementById('sendStuff').onclick = function() {
+  //Отправка данных нового дела (вроде как)
+  document.getElementById('saveSettingsBtn').onclick = function() {
     let xhr = new XMLHttpRequest(); // Объект для запроса
+    let prior = 0; // Объект для поля "Приоритет"
+
+    switch(document.getElementById('prioritySettings').value){
+      case 'low' :
+        prior = 1;
+      case 'medium':
+        prior = 2;
+      case 'high':
+        prior = 3;
+    }
+
     url = "sendTask.php"; // Адрес куда отправить
     let result = document.querySelector('.receivedData'); // Поле, куда вставлять результат
     xhr.open("POST", url, true); // Открываем запрос
     xhr.setRequestHeader("Content-Type", "application/json"); // Хэдер для json'а
-    var data = JSON.stringify({ "value": document.getElementById('stuffData').value }); // Запихиваем данные в json
+    var data = JSON.stringify({ "name": document.getElementById('taskNameSet').innerHTML, 
+                                "priority": prior, "startDate": document.getElementById('startTask').value,
+                                "deadline": document.getElementById('endTask').value}); // Запихиваем данные в json
 
     // Колбек-функция для ответа на запрос
     xhr.onreadystatechange = function () {
       // Если все прошло нормально
       if (xhr.readyState === 4 && xhr.status === 200) {
         // Вставляем эти данные для примера
-        result.innerHTML = this.responseText;
+        if (this.responseText == "1")
+          alert("Everything went fine");
+        else if (this.responseText == "2")
+          alert("Please log in");
+        else
+          alert("Something unexpected happened, code: " + this.responseText);
       }
     };
 

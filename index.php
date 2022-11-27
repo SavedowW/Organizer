@@ -181,15 +181,6 @@ $_SESSION['DBACCESS']->connect();
                                                                                 <td><button id="saveSettingsBtn">Сохранить</button></td>
                                                                                 <td><button id="deleteSettingsBtn">Удалить</button></td>
                                                                             </tr>
-                                                                            <!-- MyStuff -->
-                                                                            <tr>
-                                                                                <td><p>Testing stuff</p></td>
-                                                                                <td><p id="receivedData" class="receivedData"></p></td>
-                                                                                <td>
-                                                                                <input class="stuffData" id="stuffData" x-webkit-speech speech title="Название stuffData" placeholder="Введите stuffData" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"> 
-                                                                                </td>
-                                                                                <td><button id="sendStuff">Отправить</button></td>
-                                                                            </tr>
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
