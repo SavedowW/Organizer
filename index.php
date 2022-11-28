@@ -492,7 +492,16 @@ $_SESSION['DBACCESS']->connect();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="/scripts/script.js"></script>
     <script>
-        showLogin(document.getElementById('dom-user').innerText);
+        //Скрипты, запускаемые при загрузке/обновлении страницы
+        let userJSON = document.getElementById('dom-user').innerText
+
+        showLogin(userJSON);
+
+        //Отрисовка дел пользователя
+        if (userJSON != undefined && userJSON !='') {
+            //displayTasks(JSON_С_ТАСКАМИ_СЮДЫ);
+        } 
+
         let reason = '<?php if (isset($_GET['reason'])) echo $_GET['reason']; else echo -1; ?>';
 
         if (reason == 5) {

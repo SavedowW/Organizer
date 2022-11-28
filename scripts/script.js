@@ -42,14 +42,46 @@ function closeOpenAdminMenu() {
 
   //Добавление задачи
   document.getElementById('addNewTaskBtn').onclick = function() {
-    const ul = document.getElementById('tasksList');
     const taskName = document.getElementById('newTaskName').value;
+    createTask(taskName);
+  }
+
+  //Отображение задач пользователя
+  function displayTasks(tasksJSON) {
+    tasksJSON = JSON.parse(strJSON);
+
+    let i = 1;
+    do {
+      let currentTask = tasksJSON['task' + i];
+      
+      createTask(currentTask['name'], currentTask['priority'], currentTask['startDate'], currentTask['endDate'],);
+    } while (tasksJSON['task' + i != undefined]);
+  }
+
+  //Создание задачи
+  function createTask(taskName, priority, startDate, endDate) {
     if (taskName != undefined && taskName != '') {
+      const ul = document.getElementById('tasksList');
       document.getElementById('newTaskName').value = "";
       const li = document.getElementById('task item').cloneNode(true);
       li.style.display = 'block';
       li.firstElementChild.rows[0].cells[1].firstElementChild.innerText = taskName;
-      //li.firstElementChild.rows[0].cells[6].firstElementChild.setAttribute("script", "taskSettingsBtn" + ul.childElementCount);
+
+      if (typeof priority != 'undefined') {
+        li.firstElementChild.rows[0].cells[4].innerText = priority;
+        li.firstElementChild.rows[0].cells[4].style.display = 'block';
+      }
+
+      if (typeof startDate != 'undefined') {
+        li.firstElementChild.rows[0].cells[2].firstElementChild.innerText = startDate;
+        li.firstElementChild.rows[0].cells[2].firstElementChild.style.display = 'block';
+      }
+
+      if (typeof endDate != 'undefined') {
+        li.firstElementChild.rows[0].cells[3].firstElementChild.innerText = endDate;
+        li.firstElementChild.rows[0].cells[3].firstElementChild.style.display = 'block';
+      }
+
       ul.appendChild(li);
     } else
       alert('Неверное название дела');
@@ -75,7 +107,8 @@ function closeOpenAdminMenu() {
     xhr.setRequestHeader("Content-Type", "application/json"); // Хэдер для json'а
     const data = JSON.stringify({
       "name": document.getElementById('taskNameSet').innerHTML,
-      "priority": prior, "startDate": document.getElementById('startTask').value,
+      "priority": prior, 
+      "startDate": document.getElementById('startTask').value,
       "deadline": document.getElementById('endTask').value
     }); // Запихиваем данные в json
 
@@ -138,7 +171,7 @@ document.getElementById('closeAdminMenu').onclick = function () {
 function deleteReasonFromURL() {
   const url = new URL(document.location);
   const searchParams = url.searchParams;
-  searchParams.delete("reason"); // удалить параметр "test"
+  searchParams.delete("reason"); // удалить параметр "reason"
   window.history.pushState({}, '', url.toString());
 }
 
