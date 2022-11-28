@@ -121,12 +121,15 @@ function closeOpenAdminMenu() {
       // Если все прошло нормально
       if (xhr.readyState === 4 && xhr.status === 200) {
         // Вставляем эти данные для примера
-        if (this.responseText == "1")
+        if (Number(this.responseText) >= 1)
+        {
           alert("Everything went fine");
-        else if (this.responseText == "2")
+          // Новый ID - Number(this.responseText)
+        }
+        else if (Number(this.responseText) == -1)
           alert("Please log in");
         else
-          alert("Something unexpected happened, code: " + this.responseText);
+          alert("Something unexpected happened, error: " + this.responseText);
       }
     };
   }

@@ -124,7 +124,11 @@ class DBAccess
         $req = $this->mysqli->prepare("INSERT INTO `task` (UserID, Name, Description, CreationDate, Deadline, Priority, StartDate) VALUES (?, ?, ?, ?, ?, ?, ?);");
 
         $req->bind_param("issssis", $task->userID, $task->name, $task->description, $task->creationDate, $task->deadline, $task->priority, $task->startDate);
-        return $req->execute();
+        if ($req->execute()) {
+            return $this->mysqli->insert_id;
+        } else {
+            return -1;
+        }
     }
 
     // Add task
