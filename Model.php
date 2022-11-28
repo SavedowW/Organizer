@@ -75,7 +75,7 @@ class DBAccess
     // Initializes connection
     public function connect()
     {
-        $this->mysqli = new mysqli("localhost", "root", "", "organizer");
+        $this->mysqli = new mysqli("localhost", "root", "1234", "organizer");
         
     }
 

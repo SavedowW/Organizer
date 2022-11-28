@@ -54,7 +54,7 @@ body {
     margin-left: 5px;
     margin-right: 10px;
 }
-.admin-menu{
+.admin-menu, .admin-menu-exit{
     position: fixed;
     top: 15px;
     right: 40px;

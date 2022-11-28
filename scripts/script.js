@@ -44,7 +44,7 @@ function closeOpenAdminMenu() {
   document.getElementById('addNewTaskBtn').onclick = function() {
     const ul = document.getElementById('tasksList');
     const taskName = document.getElementById('newTaskName').value;
-    if (taskName.value) {
+    if (taskName != undefined && taskName != '') {
       document.getElementById('newTaskName').value = "";
       const li = document.getElementById('task item').cloneNode(true);
       li.style.display = 'block';
@@ -145,8 +145,24 @@ function deleteReasonFromURL() {
 function showLogin(strJSON) {
   strJSON = JSON.parse(strJSON);
   document.getElementById('loginLabel').innerText = strJSON['login'];
+
+  let el = document.getElementById('admin-menu');
+  el.style.display === 'none' ? el.style.display = 'block' : el.style.display = 'none';
+  el = document.getElementById('admin-menu-exit');
+  el.style.display === 'none' ? el.style.display = 'block' : el.style.display = 'none';
 }
 
-function hideLogin() {
+function exitUser() {
   document.getElementById('loginLabel').innerText = '';
+  document.getElementById('dom-tasks').innerText = '';
+  document.getElementById('dom-user').innerText = '';
+  const li = document.getElementById('task item').cloneNode(true);
+  let ul = document.getElementById('tasksList');
+  $(ul).empty();
+  ul.append(li);
+
+  let el = document.getElementById('admin-menu-exit');
+  el.style.display === 'none' ? el.style.display = 'block' : el.style.display = 'none';
+  el = document.getElementById('admin-menu');
+  el.style.display === 'none' ? el.style.display = 'block' : el.style.display = 'none';
 }
