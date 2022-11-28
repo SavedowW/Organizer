@@ -54,7 +54,9 @@ function closeOpenAdminMenu() {
     do {
       let currentTask = tasksJSON['task' + i];
       
-      createTask(currentTask['name'], currentTask['priority'], currentTask['startDate'], currentTask['endDate'],);
+      createTask(currentTask['name'], currentTask['priority'], currentTask['startDate'], currentTask['endDate']);
+
+      i++;
     } while (tasksJSON['task' + i != undefined]);
   }
 
