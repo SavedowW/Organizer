@@ -201,3 +201,28 @@ function exitUser() {
   el = document.getElementById('admin-menu');
   el.style.display === 'none' ? el.style.display = 'block' : el.style.display = 'none';
 }
+
+function testCurrentTaskID() {
+  const ul = document.getElementById('tasksList');
+
+  let i = 1;
+  let j = 2;
+  let isDuplicated = false;
+
+  while(ul.childNodes[i] != undefined && !isDuplicated) {
+    let currentID = ul.childNodes[i].firstChild.rows[0].cells[1].lastChild.innerText;
+
+    while (ul.childNodes[j] != undefined && !isDuplicated) {
+      if (currentID === ul.childNodes[j].firstChild.rows[0].cells[1].lastChild.innerText) {
+        alert('ID is duplicated');
+        isDuplicated = true;
+      }
+
+      j++;
+    }
+    i++;
+    j = i + 1;
+  }
+
+  return isDuplicated;
+}

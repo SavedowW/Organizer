@@ -76,7 +76,7 @@ class DBAccess
     public function connect()
     {
         //$this->mysqli = new mysqli("localhost", "root", "1234", "organizer");
-        $this->mysqli = new mysqli("localhost", "root", "", "organizer");
+        $this->mysqli = new mysqli("localhost", "root", "1234", "organizer");
     }
 
     // Get user with this login-password pair

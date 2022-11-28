@@ -154,6 +154,7 @@ $_SESSION['DBACCESS']->connect();
                                                                                               </svg>
                                                                                         </a>
                                                                                     </td>
+                                                                                    <td id = "idCurrentTask" style="display: none;"></td>
                                                                                 </tr>
                                                                             </tbody>
                                                                         </table>
