@@ -217,14 +217,17 @@ function testCurrentTaskID() {
   while(ul.childNodes[i] != undefined && !isDuplicated) {
     let currentID = ul.childNodes[i].firstChild.rows[0].cells[1].lastChild.innerText;
 
-    while (ul.childNodes[j] != undefined && !isDuplicated) {
-      if (currentID === ul.childNodes[j].firstChild.rows[0].cells[1].lastChild.innerText) {
-        alert('ID is duplicated');
-        isDuplicated = true;
-      }
+    if (currentID != '') {
+      while (ul.childNodes[j] != undefined && !isDuplicated) {
+        if (currentID === ul.childNodes[j].firstChild.rows[0].cells[1].lastChild.innerText) {
+          alert('ID is duplicated');
+          isDuplicated = true;
+        }
 
-      j++;
+        j++;
+      }  
     }
+
     i++;
     j = i + 1;
   }
