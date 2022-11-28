@@ -217,7 +217,7 @@ function testCurrentTaskID() {
   while(ul.childNodes[i] != undefined && !isDuplicated) {
     let currentID = ul.childNodes[i].firstChild.rows[0].cells[1].lastChild.innerText;
 
-    if (currentID != '') {
+    if (currentID != '' || currentID != undefined) {
       while (ul.childNodes[j] != undefined && !isDuplicated) {
         if (currentID === ul.childNodes[j].firstChild.rows[0].cells[1].lastChild.innerText) {
           alert('ID is duplicated');
