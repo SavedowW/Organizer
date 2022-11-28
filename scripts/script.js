@@ -96,6 +96,34 @@ function closeOpenAdminMenu() {
     };
   }
 
+  // удалить задачу
+  document.getElementById('deleteSettingsBtn').onclick = function() {
+    let xhr = new XMLHttpRequest(); // Объект для запроса
+    url = "deleteTask.php"; // Адрес куда отправить
+    let result = document.querySelector('.receivedData'); // Поле, куда вставлять результат
+    xhr.open("POST", url, true); // Открываем запрос
+    xhr.setRequestHeader("Content-Type", "application/json"); // Хэдер для json'а
+    var data = JSON.stringify({ "ID": Number(document.getElementById('newTaskName').value) }); // Запихиваем данные в json
+
+    // Колбек-функция для ответа на запрос
+    xhr.onreadystatechange = function () {
+      // Если все прошло нормально
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        // Вставляем эти данные для примера
+        if (this.responseText == 1)
+          alert("Everything went fine");
+        else if (this.responseText == 2)
+          alert("Please log in");
+        else if (this.responseText == 3)
+          alert("This task is not saved or does not belong to you");
+        else
+          alert("Something unexpected happened, server answer: " + this.responseText);
+      }
+    };
+
+    xhr.send(data); // Отправляем запрос
+  }
+
   function settingsBtn(el) {
     const nameTask = el.parentElement.parentElement.children[1].firstElementChild.innerText;
     const namePanel = document.getElementById('taskNameSet');

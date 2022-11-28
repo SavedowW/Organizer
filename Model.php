@@ -126,5 +126,28 @@ class DBAccess
         $req->bind_param("issssis", $task->userID, $task->name, $task->description, $task->creationDate, $task->deadline, $task->priority, $task->startDate);
         return $req->execute();
     }
+
+    // Add task
+    public function deleteTask(int $ID)
+    {
+        $req = $this->mysqli->prepare("DELETE FROM `task` WHERE `task`.`ID` = ?");
+
+        $req->bind_param("i", $ID);
+        return $req->execute();
+    }
+
+    // Get owner of the task
+    public function getTaskOwner(int $ID)
+    {
+        $req = $this->mysqli->prepare("SELECT `UserID` FROM `task` WHERE `task`.`ID` = ?");
+
+        $req->bind_param("i", $ID);
+        $req->execute();
+        $res = $req->get_result()->fetch_row();
+        if (!$res)
+            return -1;
+        else
+            return (int)$res[0];
+    }
 }
 ?>
