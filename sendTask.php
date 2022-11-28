@@ -18,17 +18,6 @@ else
     // Загружаем данные в БД
     $_SESSION['DBACCESS']->connect();
     $res = $_SESSION['DBACCESS']->addTask(new Task(-1, $_SESSION['USER']->ID, $data->name, "", $data->priority, date("Y-m-d"), $data->startDate, $data->deadline));
-    if ($res != -1)
-    {
-        // успех, отправляем в ответ строку с подтверждением
-        echo $res;
-    }
-    else
-    {
-        // неудача, отправляем в ответ строку с подтверждением
-        echo -3;
-    }
-
-    
+    echo $res;
 }
 ?>
