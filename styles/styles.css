@@ -191,8 +191,8 @@ li {
 }
 
 .addNewtaskbtn {
-    background-color: #05386B;
-    color: white;
+    /*background-color: #05386B;
+    color: white;*/
     font-size: 20px;
     height: 30px;
     width: 160px;
@@ -321,4 +321,9 @@ input[type=checkbox] {
     height: 30px;
     width: 135px;
     text-align: start;
+}
+
+#loginLabel {
+    text-align: right;
+    margin-right: 60px;
 }

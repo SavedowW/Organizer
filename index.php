@@ -16,7 +16,7 @@ $_SESSION['DBACCESS']->connect();
 
 <div id="dom-tasks" style="display: none;">
     <?php
-        if (isset($_GET['reason']) && $_GET['reason'] == 4)
+        if (isset($_SESSION['TASKS']))
         {
             $output = json_encode($_SESSION['TASKS']);
             echo htmlspecialchars($output);
@@ -25,7 +25,7 @@ $_SESSION['DBACCESS']->connect();
 </div>
 <div id="dom-user" style="display: none;">
     <?php
-        if (isset($_GET['reason']) && $_GET['reason'] == 4)
+        if (isset($_SESSION['USER']))
         {
             $output = json_encode($_SESSION['USER']);
             echo htmlspecialchars($output);
@@ -38,7 +38,7 @@ $_SESSION['DBACCESS']->connect();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.b ootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="/Organizer/styles/styles.css">
+    <link rel="stylesheet" href="/styles/styles.css">
     <title>Органайзер</title>
 </head>
 <body>
@@ -52,7 +52,10 @@ $_SESSION['DBACCESS']->connect();
                                 <div class="logo-block"></div>
                                 <h1>Онлайн органайзер</h1>
                             </td>
-                            <td>
+                            <td style="width: 172vh;">
+                                <p id="loginLabel"></p>
+                            </td>
+                            <td style="width: 4vh">
                                 <a href="#" id="admin-menu" class="admin-menu" onclick="closeOpenAdminMenu();">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
@@ -442,7 +445,7 @@ $_SESSION['DBACCESS']->connect();
                         <a href="#" id="regBut">Регистрация</a>
                     </li>
                     <li class="close">
-                        <a href="" title="Закрыть">
+                        <a href="#" id="closeAdminMenu" title="Закрыть">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                                 <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
                               </svg>
@@ -482,24 +485,29 @@ $_SESSION['DBACCESS']->connect();
         </div>
     </span>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="/Organizer/scripts/script.js"></script>
+    <script src="/scripts/script.js"></script>
     <script>
-        var reason = '<?php echo $_GET['reason'];?>';
-        
+        showLogin(document.getElementById('dom-user').innerText);
+        let reason = '<?php if (isset($_GET['reason'])) echo $_GET['reason']; else echo -1; ?>';
+
         if (reason == 5) {
             alert('Неправильный логин и/или пароль');
-            //closeOpenAdminMenu();
+            closeOpenAdminMenu();
         } else if (reason == 4) {
             alert('Вы вошли');
         } else if (reason == 3) {
             alert('Данный пользователь уже зарегистрирован');
+            closeOpenAdminMenu();
         } else if (reason == 2) {
             alert('Пароли не совпали');
+            closeOpenAdminMenu();
         } else if (reason == 1) {
             alert('Поля для регистрации пустые');
+            closeOpenAdminMenu();
         } else if (reason == 6) {
             alert('Вы зарегистрировались');
         }
-</script>
+        deleteReasonFromURL();
+    </script>
 </body>
 </html>
