@@ -181,6 +181,7 @@ function deleteReasonFromURL() {
 }
 
 function showLogin(strJSON) {
+  if (strJSON != '\n    ') {
   strJSON = JSON.parse(strJSON);
   document.getElementById('loginLabel').innerText = strJSON['login'];
 
@@ -188,6 +189,7 @@ function showLogin(strJSON) {
   el.style.display === 'none' ? el.style.display = 'block' : el.style.display = 'none';
   el = document.getElementById('admin-menu-exit');
   el.style.display === 'none' ? el.style.display = 'block' : el.style.display = 'none';
+  }
 }
 
 function exitUser() {
