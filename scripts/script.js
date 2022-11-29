@@ -48,20 +48,21 @@ function closeOpenAdminMenu() {
 
   //Отображение задач пользователя
   function displayTasks(tasksJSON) {
-    tasksJSON = JSON.parse(strJSON);
+    tasksJSON = JSON.parse(tasksJSON);
 
-    let i = 1;
+    let i = 0;
+    let count = Object.keys(tasksJSON).length;
     do {
-      let currentTask = tasksJSON['task' + i];
+      let currentTask = tasksJSON[i];
       
-      createTask(currentTask['name'], currentTask['priority'], currentTask['startDate'], currentTask['endDate']);
+      createTask(currentTask['name'], currentTask['priority'], currentTask['startDate'], currentTask['deadline'], currentTask['ID']);
 
       i++;
-    } while (tasksJSON['task' + i != undefined]);
+    } while (i < count);
   }
 
   //Создание задачи
-  function createTask(taskName, priority, startDate, endDate) {
+  function createTask(taskName, priority, startDate, endDate, idTask) {
     if (taskName != undefined && taskName != '') {
       const ul = document.getElementById('tasksList');
       document.getElementById('newTaskName').value = "";
@@ -82,6 +83,10 @@ function closeOpenAdminMenu() {
       if (typeof endDate != 'undefined') {
         li.firstElementChild.rows[0].cells[3].firstElementChild.innerText = endDate;
         li.firstElementChild.rows[0].cells[3].firstElementChild.style.display = 'block';
+      }
+
+      if (typeof idTask != 'undefined') {
+        li.firstElementChild.rows[0].cells[7].innerHTML = idTask;
       }
 
       ul.appendChild(li);
@@ -141,7 +146,7 @@ function closeOpenAdminMenu() {
     let result = document.querySelector('.receivedData'); // Поле, куда вставлять результат
     xhr.open("POST", url, true); // Открываем запрос
     xhr.setRequestHeader("Content-Type", "application/json"); // Хэдер для json'а
-    var data = JSON.stringify({ "ID": Number(document.getElementById('newTaskName').value) }); // Запихиваем данные в json
+    var data = JSON.stringify({ "ID": document.getElementById('idTaskSetting').innerText }); // Запихиваем данные в json
 
     // Колбек-функция для ответа на запрос
     xhr.onreadystatechange = function () {
@@ -160,12 +165,16 @@ function closeOpenAdminMenu() {
     };
 
     xhr.send(data); // Отправляем запрос
+    location.reload();
   }
 
   function settingsBtn(el) {
     const nameTask = el.parentElement.parentElement.children[1].firstElementChild.innerText;
     const namePanel = document.getElementById('taskNameSet');
     namePanel.innerText = nameTask;
+
+    const idTask = el.parentElement.parentElement.children[7].innerHTML;
+    document.getElementById('idTaskSetting').innerText = idTask;
   }
 
 document.getElementById('closeAdminMenu').onclick = function () {

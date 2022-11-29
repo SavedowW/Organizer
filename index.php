@@ -18,7 +18,7 @@ $_SESSION['DBACCESS']->connect();
     <?php
         if (isset($_SESSION['TASKS']))
         {
-            $output = json_encode($_SESSION['TASKS']);
+            $output = json_encode(Task::fromSql($_SESSION['DBACCESS']->getUserTasks($_SESSION['USER']->ID)));
             echo htmlspecialchars($output);
         }
     ?>
@@ -166,6 +166,7 @@ $_SESSION['DBACCESS']->connect();
                                                             <div class="taskSettingsContainer">
                                                                 <div id="taskSettingsPanel" style="display: block;">
                                                                     <p style="font-size: 24px;">Настройки выбранного дела</p>
+                                                                    <div id = "idTaskSetting" style="display: none;"></div>
                                                                     <table style="margin-top: 30px;">
                                                                         <tbody>
                                                                             <tr>
@@ -494,13 +495,13 @@ $_SESSION['DBACCESS']->connect();
     <script src="/Organizer/scripts/script.js"></script>
     <script>
         //Скрипты, запускаемые при загрузке/обновлении страницы
-        let userJSON = document.getElementById('dom-user').innerText
+        let userJSON = document.getElementById('dom-user').innerText;
 
         showLogin(userJSON);
 
         //Отрисовка дел пользователя
         if (userJSON != undefined && userJSON !='') {
-            //displayTasks(JSON_С_ТАСКАМИ_СЮДЫ);
+            displayTasks(document.getElementById('dom-tasks').innerText);
         } 
 
         let reason = '<?php if (isset($_GET['reason'])) echo $_GET['reason']; else echo -1; ?>';
