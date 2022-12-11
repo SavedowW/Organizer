@@ -160,11 +160,7 @@ class DBAccess
         $req = $this->mysqli->prepare("UPDATE task SET Name = ?, StartDate = ?, Deadline = ?, Priority = ? WHERE ID=?; ");
 
         $req->bind_param("sssii", $task->name, $task->startDate, $task->deadline, $task->priority, $task->ID);
-        if ($req->execute()) {
-            return 0;
-        } else {
-            return -1;
-        }
+        return $req->execute();
     }
 }
 ?>
