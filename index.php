@@ -512,14 +512,14 @@ $_SESSION['DBACCESS']->connect();
     <script>
         //Скрипты, запускаемые при загрузке/обновлении страницы
         let userJSON = document.getElementById('dom-user').innerText;
-        let taskJson = document.getElementById('dom-tasks').innerText;
+        let taskJSON = document.getElementById('dom-tasks').innerText;
 
         showLogin(userJSON);
 
         //Отрисовка дел пользователя
-        if (userJSON != undefined && userJSON !='' && taskJson != '\n    ') {
+        if (userJSON != undefined && userJSON !='' && taskJSON != '\n    ') {
             displayTasks(taskJson);
-            displayTasksByPriority(taskJson);
+            displayTasksByPriority(taskJSON);
         } 
 
         let reason = '<?php if (isset($_GET['reason'])) echo $_GET['reason']; else echo -1; ?>';
