@@ -4,11 +4,10 @@
 
     Нужен json data, содержащий:
     ID (задачи)
-    userID
     name
     priority
     startDate
-    Deadline
+    deadline
 
     Возвращает:
     1 - все прошло успешно
