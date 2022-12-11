@@ -116,6 +116,8 @@ function closeOpenAdminMenu() {
         prior = 2;
       case 'high':
         prior = 3;
+      case 'unknown':
+        prior = 4;
     }
 
     let url = "sendTask.php"; // Адрес куда отправить
@@ -182,7 +184,17 @@ function closeOpenAdminMenu() {
     const nameTask = el.parentElement.parentElement.children[1].firstElementChild.innerText;
     const startDate = el.parentElement.parentElement.children[2].firstElementChild.innerText;
     const endDate = el.parentElement.parentElement.children[3].firstElementChild.innerText;
-    const priority = el.parentElement.parentElement.children[4].innerText;
+    let priority = el.parentElement.parentElement.children[4].innerText;
+    switch (priority) {
+      case 'Низкий':
+        priority = 'low';
+      case 'Средний':
+        priority = 'medium';
+      case 'Высокий':
+        priority = 'hight';
+      case 'Неизвестный приоритет':
+        priority = 'unknown';
+    }
     const namePanel = document.getElementById('taskNameSet');
     namePanel.innerText = nameTask;
     document.getElementById('startTask').value = startDate;

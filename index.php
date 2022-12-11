@@ -185,6 +185,7 @@ $_SESSION['DBACCESS']->connect();
                                                                                     <option value="low">Низкий</option>
                                                                                     <option value="medium">Средний</option>
                                                                                     <option value="hight">Высокий</option>
+                                                                                    <option value="unknown">Неизвестный приоритет</option>
                                                                                 </select></td>
                                                                             </tr>
                                                                             <tr style="height: 100px;">
