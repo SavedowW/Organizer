@@ -130,7 +130,7 @@ $_SESSION['DBACCESS']->connect();
                                                                     <li class="taskItem" id="task item" style="display: none;">
                                                                         <table class="taskLine">
                                                                             <tbody>
-                                                                                <tr>
+                                                                                <tr class="taskSection">
                                                                                     <td class="selection" style="display: none;">
                                                                                         <input type="checkbox">
                                                                                     </td>

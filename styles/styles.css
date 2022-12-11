@@ -226,6 +226,11 @@ li {
     margin-left: 15px;
 }
 
+.taskSection {
+    width: 729px;
+    height: 39px;
+}
+
 .newTaskName {
     width: 400px;
     height: 23px;

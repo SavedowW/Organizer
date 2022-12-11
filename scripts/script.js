@@ -180,8 +180,14 @@ function closeOpenAdminMenu() {
 
   function settingsBtn(el) {
     const nameTask = el.parentElement.parentElement.children[1].firstElementChild.innerText;
+    const startDate = el.parentElement.parentElement.children[2].firstElementChild.innerText;
+    const endDate = el.parentElement.parentElement.children[3].firstElementChild.innerText;
+    const priority = el.parentElement.parentElement.children[4].innerText;
     const namePanel = document.getElementById('taskNameSet');
     namePanel.innerText = nameTask;
+    document.getElementById('startTask').value = startDate;
+    document.getElementById('endTask').value = endDate;
+    document.getElementById('prioritySettings').value = priority;
 
     const idTask = el.parentElement.parentElement.children[7].innerHTML;
     document.getElementById('idTaskSetting').innerText = idTask;
