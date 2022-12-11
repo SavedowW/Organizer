@@ -202,9 +202,9 @@ $_SESSION['DBACCESS']->connect();
                                             </table>
                                         </div>
                                     </div>
-                                    <div id="tabs-priorities" class="ui-tabs-panel" style="display:block;">
+                                    <div id="tabs-priorities" class="ui-tabs-panel" style="display:none;">
                                         <div id="priorities" >
-                                            <div class="emptyform" style="display: none;">
+                                            <div class="emptyform" style="display: block;">
                                                 <h3>Нет дел для приоритизации</h3>
                                                 <p>Добавьте их на вкладке дела</p>
                                             </div>
@@ -512,13 +512,14 @@ $_SESSION['DBACCESS']->connect();
     <script>
         //Скрипты, запускаемые при загрузке/обновлении страницы
         let userJSON = document.getElementById('dom-user').innerText;
+        let taskJson = document.getElementById('dom-tasks').innerText;
 
         showLogin(userJSON);
 
         //Отрисовка дел пользователя
-        if (userJSON != undefined && userJSON !='') {
-            displayTasks(document.getElementById('dom-tasks').innerText);
-            displayTasksByPriority(document.getElementById('dom-tasks').innerText);
+        if (userJSON != undefined && userJSON !='' && taskJson != '\n    ') {
+            displayTasks(taskJson);
+            displayTasksByPriority(taskJson);
         } 
 
         let reason = '<?php if (isset($_GET['reason'])) echo $_GET['reason']; else echo -1; ?>';
