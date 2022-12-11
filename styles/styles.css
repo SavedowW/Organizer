@@ -235,7 +235,13 @@ li {
     margin-top: -2px;
     font-size: 16px;
     margin-right: 10px;
-    margin-left: 6px;
+    margin-left: 0px;
+    width: 81px;
+}
+
+#taskPriority {
+    font-size: 14px;
+    margin-left: 30px;
 }
 
 .taskItem {
@@ -260,7 +266,7 @@ input[type=checkbox] {
 
 #taskName {
     text-align: left;
-    width: 470px;
+    width: 365px;
     height: 14px;
     margin-left: 5px;
     margin-bottom: 0px;

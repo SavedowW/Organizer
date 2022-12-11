@@ -71,6 +71,16 @@ function closeOpenAdminMenu() {
       li.firstElementChild.rows[0].cells[1].firstElementChild.innerText = taskName;
 
       if (typeof priority != 'undefined') {
+        if (priority == '1') {
+          priority = 'Низкий';
+        } else if (priority == '2') {
+          priority = 'Средний';
+        } else if (priority == '3') {
+          priority = 'Высокий';
+        } else {
+          priority = 'Неизвестный приоритет';
+        }
+
         li.firstElementChild.rows[0].cells[4].innerText = priority;
         li.firstElementChild.rows[0].cells[4].style.display = 'block';
       }
