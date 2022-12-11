@@ -204,7 +204,7 @@ $_SESSION['DBACCESS']->connect();
                                     </div>
                                     <div id="tabs-priorities" class="ui-tabs-panel" style="display:none;">
                                         <div id="priorities" >
-                                            <div class="emptyform" style="display: block;">
+                                            <div class="emptyform" id="emptyForm" style="display: block;">
                                                 <h3>Нет дел для приоритизации</h3>
                                                 <p>Добавьте их на вкладке дела</p>
                                             </div>

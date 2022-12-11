@@ -71,11 +71,11 @@ function closeOpenAdminMenu() {
       li.firstElementChild.rows[0].cells[1].firstElementChild.innerText = taskName;
 
       if (typeof priority != 'undefined') {
-        if (priority == '1') {
+        if (priority == 1) {
           priority = 'Низкий';
-        } else if (priority == '2') {
+        } else if (priority == 2) {
           priority = 'Средний';
-        } else if (priority == '3') {
+        } else if (priority == 3) {
           priority = 'Высокий';
         } else {
           priority = 'Неизвестный приоритет';
@@ -112,12 +112,16 @@ function closeOpenAdminMenu() {
     switch(document.getElementById('prioritySettings').value){
       case 'low' :
         prior = 1;
+        break;
       case 'medium':
         prior = 2;
+        break;
       case 'high':
         prior = 3;
+        break;
       case 'unknown':
         prior = 4;
+        break;
     }
 
     let url = "sendTask.php"; // Адрес куда отправить
@@ -188,12 +192,16 @@ function closeOpenAdminMenu() {
     switch (priority) {
       case 'Низкий':
         priority = 'low';
+        break;
       case 'Средний':
         priority = 'medium';
+        break;
       case 'Высокий':
         priority = 'hight';
+        break;
       case 'Неизвестный приоритет':
         priority = 'unknown';
+        break;
     }
     const namePanel = document.getElementById('taskNameSet');
     namePanel.innerText = nameTask;
@@ -281,7 +289,7 @@ function displayTasksByPriority(tasksJSON) {
 
   if (count != 0) {
     document.getElementById('formPriority').style.display = 'block';
-    document.getElementById('tabs-priorities').style.display = 'none';
+    document.getElementById('emptyForm').style.display = 'none';
     while (i < count) {
       let currentTask = tasksJSON[i];
     
