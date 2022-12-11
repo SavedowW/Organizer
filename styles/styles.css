@@ -231,6 +231,13 @@ li {
     height: 23px;
 }
 
+#taskBegin, #taskDeadLine {
+    margin-top: -2px;
+    font-size: 16px;
+    margin-right: 10px;
+    margin-left: 6px;
+}
+
 .taskItem {
     border: solid 2px black;
     height: 40px;
