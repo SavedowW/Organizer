@@ -271,3 +271,72 @@ function testCurrentTaskID() {
 
   return isDuplicated;
 }
+
+//Отображение задач пользователя, отсортировонное по приоритетам
+function displayTasksByPriority(tasksJSON) {
+  tasksJSON = JSON.parse(tasksJSON);
+
+  let i = 0;
+  let count = Object.keys(tasksJSON).length;
+
+  if (count != 0) {
+    document.getElementById('formPriority').style.display = 'block';
+    document.getElementById('tabs-priorities').style.display = 'none';
+    while (i < count) {
+      let currentTask = tasksJSON[i];
+    
+      createTaskByPriority(currentTask['name'], currentTask['priority'], currentTask['startDate'], currentTask['deadline'], currentTask['ID']);
+
+      i++;
+    }
+  }
+}
+
+//Создание задачи в выбранном разделе
+function createTaskByPriority(taskName, priority, startDate, endDate, idTask) {
+  if (taskName != undefined && taskName != '') {
+    let ul = document.getElementById('tasksList');
+    document.getElementById('newTaskName').value = "";
+    const li = document.getElementById('task item').cloneNode(true);
+    li.style.display = 'block';
+    li.firstElementChild.rows[0].cells[1].firstElementChild.innerText = taskName;
+
+    if (typeof priority != 'undefined') {
+      if (priority == '1') {
+        //priority = 'Низкий';
+        ul = document.getElementById('lowTaskContainer');
+      } else if (priority == '2') {
+        //priority = 'Средний';
+        ul = document.getElementById('mediumTaskContainer');
+      } else if (priority == '3') {
+        //priority = 'Высокий';
+        ul = document.getElementById('hightTaskContainer');
+      } else {
+        //priority = 'Неизвестный приоритет';
+        ul = document.getElementById('unknownTaskContainer');
+      }
+
+      //li.firstElementChild.rows[0].cells[4].innerText = priority;
+      //li.firstElementChild.rows[0].cells[4].style.display = 'block';
+    }
+
+    if (typeof startDate != 'undefined') {
+      li.firstElementChild.rows[0].cells[2].firstElementChild.innerText = startDate;
+      li.firstElementChild.rows[0].cells[2].firstElementChild.style.display = 'block';
+    }
+
+    if (typeof endDate != 'undefined') {
+      li.firstElementChild.rows[0].cells[3].firstElementChild.innerText = endDate;
+      li.firstElementChild.rows[0].cells[3].firstElementChild.style.display = 'block';
+    }
+
+    if (typeof idTask != 'undefined') {
+      li.firstElementChild.rows[0].cells[7].innerHTML = idTask;
+    }
+
+    li.firstElementChild.rows[0].cells[6].firstElementChild.style.display = 'none';
+
+    ul.appendChild(li);
+  } else
+    alert('Неверное название дела');
+}
