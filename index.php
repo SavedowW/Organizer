@@ -518,7 +518,7 @@ $_SESSION['DBACCESS']->connect();
 
         //Отрисовка дел пользователя
         if (userJSON != undefined && userJSON !='' && taskJSON != '\n    ') {
-            displayTasks(taskJson);
+            displayTasks(taskJSON);
             displayTasksByPriority(taskJSON);
         } 
 
