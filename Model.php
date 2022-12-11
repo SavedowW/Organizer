@@ -75,7 +75,7 @@ class DBAccess
     // Initializes connection
     public function connect()
     {
-        $this->mysqli = new mysqli("localhost", "root", "1234", "organizer");
+        $this->mysqli = new mysqli("localhost", "root", "", "organizer");
         //$this->mysqli = new mysqli("localhost", "root", "", "organizer");
     }
 
@@ -152,6 +152,19 @@ class DBAccess
             return -1;
         else
             return (int)$res[0];
+    }
+
+    // Update task
+    public function updateTask(Task $task)
+    {
+        $req = $this->mysqli->prepare("UPDATE task SET Name = ?, StartDate = ?, Deadline = ?, Priority = ? WHERE ID=?; ");
+
+        $req->bind_param("sssii", $task->name, $task->startDate, $task->deadline, $task->priority, $task->ID);
+        if ($req->execute()) {
+            return 0;
+        } else {
+            return -1;
+        }
     }
 }
 ?>
