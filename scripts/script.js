@@ -110,59 +110,64 @@ function closeOpenAdminMenu() {
     let prior = 0; // Объект для поля "Приоритет"
     const idTask = document.getElementById('idTaskSetting').innerText;
     const priorityValue = document.getElementById('prioritySettings').value;
+    const taskName = document.getElementById('taskNameSet').innerHTML;
+    const isCurrentDate = document.getElementById('startTask').value < document.getElementById('endTask').value;
 
-    switch(priorityValue){
-      case 'low' :
-        prior = 1;
-        break;
-      case 'medium':
-        prior = 2;
-        break;
-      case 'hight':
-        prior = 3;
-        break;
-      case 'unknown':
-        prior = 4;
-        break;
-    }
+    if (!(taskName === '' || typeof taskName === 'undefined') && isCurrentDate) {
 
-    const isIdTask = typeof idTask === 'undefined' || idTask === '';
-    let url;
-    if (isIdTask) {
-      url = "sendTask.php"; // Адрес куда отправить
-    } else {
-      url = 'updateTask.php';
-    }
-    let result = document.querySelector('.receivedData'); // Поле, куда вставлять результат
-    xhr.open("POST", url, true); // Открываем запрос
-    xhr.setRequestHeader("Content-Type", "application/json"); // Хэдер для json'а
-    const data = JSON.stringify({
-      "name": document.getElementById('taskNameSet').innerHTML,
-      "priority": prior, 
-      "startDate": document.getElementById('startTask').value,
-      "deadline": document.getElementById('endTask').value,
-      "ID": idTask
-    }); // Запихиваем данные в json
-
-    xhr.send(data); // Отправляем запрос
-
-    // Колбек-функция для ответа на запрос
-    xhr.onreadystatechange = function () {
-      // Если все прошло нормально
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        // Вставляем эти данные для примера
-        if (Number(this.responseText) >= 1)
-        {
-          alert("Everything went fine");
-          // Новый ID - Number(this.responseText)
-        }
-        else if (Number(this.responseText) === -1)
-          alert("Please log in");
-        else
-          alert("Something unexpected happened, error: " + this.responseText);
+      switch (priorityValue) {
+        case 'low' :
+          prior = 1;
+          break;
+        case 'medium':
+          prior = 2;
+          break;
+        case 'hight':
+          prior = 3;
+          break;
+        case 'unknown':
+          prior = 4;
+          break;
       }
-    };
-    //location.reload();
+
+      const isIdTask = typeof idTask === 'undefined' || idTask === '';
+      let url;
+      if (isIdTask) {
+        url = "sendTask.php"; // Адрес куда отправить
+      } else {
+        url = 'updateTask.php';
+      }
+      let result = document.querySelector('.receivedData'); // Поле, куда вставлять результат
+      xhr.open("POST", url, true); // Открываем запрос
+      xhr.setRequestHeader("Content-Type", "application/json"); // Хэдер для json'а
+      const data = JSON.stringify({
+        "name": taskName,
+        "priority": prior,
+        "startDate": document.getElementById('startTask').value,
+        "deadline": document.getElementById('endTask').value,
+        "ID": idTask
+      }); // Запихиваем данные в json
+
+      xhr.send(data); // Отправляем запрос
+
+      // Колбек-функция для ответа на запрос
+      xhr.onreadystatechange = function () {
+        // Если все прошло нормально
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          // Вставляем эти данные для примера
+          if (Number(this.responseText) >= 1) {
+            alert("Everything went fine");
+            setTimeout('location.reload()', 500);
+            // Новый ID - Number(this.responseText)
+          } else if (Number(this.responseText) === -1)
+            alert("Please log in");
+          else
+            alert("Something unexpected happened, error: " + this.responseText);
+        }
+      };
+    }else if (!isCurrentDate) {
+      alert('Date is incorrect');
+    }
   }
 
   // удалить задачу
