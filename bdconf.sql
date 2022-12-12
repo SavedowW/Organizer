@@ -22,7 +22,7 @@ CREATE TABLE `user` (
 CREATE TABLE `task` (
   `ID` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `UserID` int NOT NULL,
-  `Name` varchar(45) UNIQUE NOT NULL,
+  `Name` varchar(45) NOT NULL,
   `Description` varchar(256) NOT NULL,
   `CreationDate` DATE,
   `Deadline` DATE,
