@@ -29,6 +29,8 @@ if (!isset($_SESSION['USER']))
 }
 else
 {
+    $_SESSION['DBACCESS']->connect();
+
     // разбираем JSON-строку на составляющие встроенной командой
     $data = json_decode(file_get_contents("php://input"));
 
@@ -42,11 +44,11 @@ else
     }
 
     // Загружаем данные в БД
-    $_SESSION['DBACCESS']->connect();
+
     if ($_SESSION['DBACCESS']->updateTask(new Task($data->ID, 0, $data->name, "", $data->priority, date("Y-m-d"), $data->startDate, $data->deadline))) {
-        return 1;
+        echo 1;
     } else {
-        return 4;
+        echo 4;
     }
     
 }

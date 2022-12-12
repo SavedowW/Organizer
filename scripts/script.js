@@ -109,15 +109,16 @@ function closeOpenAdminMenu() {
     let xhr = new XMLHttpRequest(); // Объект для запроса
     let prior = 0; // Объект для поля "Приоритет"
     const idTask = document.getElementById('idTaskSetting').innerText;
+    const priorityValue = document.getElementById('prioritySettings').value;
 
-    switch(document.getElementById('prioritySettings').value){
+    switch(priorityValue){
       case 'low' :
         prior = 1;
         break;
       case 'medium':
         prior = 2;
         break;
-      case 'high':
+      case 'hight':
         prior = 3;
         break;
       case 'unknown':
@@ -161,12 +162,13 @@ function closeOpenAdminMenu() {
           alert("Something unexpected happened, error: " + this.responseText);
       }
     };
+    //location.reload();
   }
 
   // удалить задачу
   document.getElementById('deleteSettingsBtn').onclick = function() {
     let xhr = new XMLHttpRequest(); // Объект для запроса
-    url = "deleteTask.php"; // Адрес куда отправить
+    let url = "deleteTask.php"; // Адрес куда отправить
     let result = document.querySelector('.receivedData'); // Поле, куда вставлять результат
     xhr.open("POST", url, true); // Открываем запрос
     xhr.setRequestHeader("Content-Type", "application/json"); // Хэдер для json'а
