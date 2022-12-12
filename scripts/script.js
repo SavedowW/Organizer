@@ -140,7 +140,7 @@ function closeOpenAdminMenu() {
       "priority": prior, 
       "startDate": document.getElementById('startTask').value,
       "deadline": document.getElementById('endTask').value,
-      "idTask": idTask
+      "ID": idTask
     }); // Запихиваем данные в json
 
     xhr.send(data); // Отправляем запрос

@@ -32,6 +32,7 @@ else
     // разбираем JSON-строку на составляющие встроенной командой
     $data = json_decode(file_get_contents("php://input"));
 
+    $taskID = (int)$data->ID;
 
     $ownerID = $_SESSION['DBACCESS']->getTaskOwner($taskID);
     if ($ownerID != $_SESSION['USER']->ID)
