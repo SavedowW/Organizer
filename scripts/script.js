@@ -63,7 +63,7 @@ function closeOpenAdminMenu() {
 
   //Создание задачи
   function createTask(taskName, priority, startDate, endDate, idTask) {
-    if (taskName != undefined && taskName != '') {
+    if (taskName !== undefined && taskName !== '') {
       const ul = document.getElementById('tasksList');
       document.getElementById('newTaskName').value = "";
       const li = document.getElementById('task item').cloneNode(true);
@@ -71,11 +71,11 @@ function closeOpenAdminMenu() {
       li.firstElementChild.rows[0].cells[1].firstElementChild.innerText = taskName;
 
       if (typeof priority != 'undefined') {
-        if (priority == 1) {
+        if (priority === 1) {
           priority = 'Низкий';
-        } else if (priority == 2) {
+        } else if (priority === 2) {
           priority = 'Средний';
-        } else if (priority == 3) {
+        } else if (priority === 3) {
           priority = 'Высокий';
         } else {
           priority = 'Неизвестный приоритет';
@@ -108,6 +108,7 @@ function closeOpenAdminMenu() {
   document.getElementById('saveSettingsBtn').onclick = function() {
     let xhr = new XMLHttpRequest(); // Объект для запроса
     let prior = 0; // Объект для поля "Приоритет"
+    const idTask = document.getElementById('idTaskSetting').innerText;
 
     switch(document.getElementById('prioritySettings').value){
       case 'low' :
@@ -124,7 +125,13 @@ function closeOpenAdminMenu() {
         break;
     }
 
-    let url = "sendTask.php"; // Адрес куда отправить
+    const isIdTask = typeof idTask === 'undefined' || idTask === '';
+    let url;
+    if (isIdTask) {
+      url = "sendTask.php"; // Адрес куда отправить
+    } else {
+      url = 'updateTask.php';
+    }
     let result = document.querySelector('.receivedData'); // Поле, куда вставлять результат
     xhr.open("POST", url, true); // Открываем запрос
     xhr.setRequestHeader("Content-Type", "application/json"); // Хэдер для json'а
@@ -132,7 +139,8 @@ function closeOpenAdminMenu() {
       "name": document.getElementById('taskNameSet').innerHTML,
       "priority": prior, 
       "startDate": document.getElementById('startTask').value,
-      "deadline": document.getElementById('endTask').value
+      "deadline": document.getElementById('endTask').value,
+      "idTask": idTask
     }); // Запихиваем данные в json
 
     xhr.send(data); // Отправляем запрос
@@ -147,7 +155,7 @@ function closeOpenAdminMenu() {
           alert("Everything went fine");
           // Новый ID - Number(this.responseText)
         }
-        else if (Number(this.responseText) == -1)
+        else if (Number(this.responseText) === -1)
           alert("Please log in");
         else
           alert("Something unexpected happened, error: " + this.responseText);
