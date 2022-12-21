@@ -177,7 +177,9 @@ $_SESSION['DBACCESS']->connect();
                                                                                 <td>От</td>
                                                                                 <td><input type="date" name="Начало" id="startTask"> до</td>
                                                                                 <td><input type="date" name="Конец" id="endTask"></td>
-                                                                                <td></td>
+                                                                                <td><button id="plus5days" onclick="plusDate(document.getElementById('endTask'), 5);">+ 5 дней</button></td>
+                                                                                <td><button id="plus1month" onclick="plusDate(document.getElementById('endTask'), 0, 1);">+ 1 месяц</button></td>
+                                                                                <td><button id="plus1year" onclick="plusDate(document.getElementById('endTask'), 0, 0, 1);">+ 1 год</button></td>
                                                                             </tr>
                                                                             <tr style="height: 50px;">
                                                                                 <td style="padding-top: 15px;"><p>Приоритет</p></td>

@@ -1,9 +1,29 @@
+const currentDate = new Date();
+document.getElementById('startTask').value = currentDate.toISOString().split('T')[0];
+let newDate = new Date();
+newDate.setDate(newDate.getDate() + 10);
+document.getElementById('endTask').value = newDate.toISOString().split('T')[0];
+
+function plusDate(elementDate, countDays, countMonthes, countYears) {
+  let date = new Date(elementDate.value);
+
+  if (typeof countDays != 'undefined' && countDays !== 0) {
+    date.setDate(date.getDate() + countDays);
+  } else if (typeof countMonthes != 'undefined' && countMonthes !== 0) {
+    date.setMonth(date.getMonth() + countMonthes);
+  } else if (typeof countYears != 'undefined' && countYears !== 0) {
+    date.setFullYear(date.getFullYear() + countYears);
+  }
+
+  elementDate.value = date.toISOString().split('T')[0];
+}
+
 function closeOpenAdminMenu() {
   let el = document.getElementById('fancybox-wrap');
   el.style.display === 'none' ? el.style.display = 'block' : el.style.display = 'none';
   el = document.getElementById('overlay');
   el.style.display === 'none' ? el.style.display = 'block' : el.style.display = 'none';
-  }
+}
 
   document.getElementById('regBut').onclick = function() {
     let el = document.getElementById('auth');
