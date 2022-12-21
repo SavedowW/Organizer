@@ -4,13 +4,13 @@ let newDate = new Date();
 newDate.setDate(newDate.getDate() + 10);
 document.getElementById('endTask').value = newDate.toISOString().split('T')[0];
 
-function plusDate(elementDate, countDays, countMonthes, countYears) {
+function plusDate(elementDate, countDays, countMonth, countYears) {
   let date = new Date(elementDate.value);
 
   if (typeof countDays != 'undefined' && countDays !== 0) {
     date.setDate(date.getDate() + countDays);
-  } else if (typeof countMonthes != 'undefined' && countMonthes !== 0) {
-    date.setMonth(date.getMonth() + countMonthes);
+  } else if (typeof countMonth != 'undefined' && countMonth !== 0) {
+    date.setMonth(date.getMonth() + countMonth);
   } else if (typeof countYears != 'undefined' && countYears !== 0) {
     date.setFullYear(date.getFullYear() + countYears);
   }
@@ -240,8 +240,18 @@ function closeOpenAdminMenu() {
     }
     const namePanel = document.getElementById('taskNameSet');
     namePanel.innerText = nameTask;
-    document.getElementById('startTask').value = startDate;
+    if (startDate !== '') {
+      document.getElementById('startTask').value = startDate;
+    } else {
+      document.getElementById('startTask').value = currentDate.toISOString().split('T')[0];
+    }
+
+    if (endDate !== '') {
     document.getElementById('endTask').value = endDate;
+    } else {
+      document.getElementById('endTask').value = newDate.toISOString().split('T')[0];
+    }
+    
     document.getElementById('prioritySettings').value = priority;
 
     const idTask = el.parentElement.parentElement.children[7].innerHTML;
@@ -315,7 +325,7 @@ function testCurrentTaskID() {
   return isDuplicated;
 }
 
-//Отображение задач пользователя, отсортировонное по приоритетам
+//Отображение задач пользователя в таблице приоритетов
 function displayTasksByPriority(tasksJSON) {
   tasksJSON = JSON.parse(tasksJSON);
 
@@ -335,7 +345,7 @@ function displayTasksByPriority(tasksJSON) {
   }
 }
 
-//Создание задачи в выбранном разделе
+//распределение задачи по приоритету 
 function createTaskByPriority(taskName, priority, startDate, endDate, idTask) {
   if (taskName != undefined && taskName != '') {
     let ul = document.getElementById('tasksList');
@@ -382,4 +392,66 @@ function createTaskByPriority(taskName, priority, startDate, endDate, idTask) {
     ul.appendChild(li);
   } else
     alert('Неверное название дела');
+}
+
+//Отображение задач пользователя в таблице Эйзенхауэра
+function displayTasksInEizenTable(tasksJSON) {
+  tasksJSON = JSON.parse(tasksJSON);
+
+  let i = 0;
+  let count = Object.keys(tasksJSON).length;
+
+  if (count != 0) {
+    while (i < count) {
+      let currentTask = tasksJSON[i];
+    
+      createTaskInEizenTable(currentTask['name'], currentTask['priority'], currentTask['startDate'], currentTask['deadline'], currentTask['ID']);
+
+      i++;
+    }
+  }
+}
+
+//Распределение задачи по таблице Эйзенхауэра
+function createTaskInEizenTable(taskName, priority, startDate, endDate, idTask) {
+  if (taskName != undefined && taskName != '' && typeof startDate != 'undefined' && typeof endDate != 'undefined') {
+    let ul;
+    const li = document.getElementById('task item').cloneNode(true);
+    li.style.display = 'block';
+    li.firstElementChild.rows[0].cells[1].firstElementChild.innerText = taskName;
+
+    startDate = new Date(startDate);
+    endDate = new Date(endDate);
+
+    const diff = (endDate - currentDate)/1000/60/60/24;
+
+    if (typeof priority != 'undefined' && diff > 0) {
+      if (priority == 3 && diff < 10) {
+        ul = document.getElementById('importantUrgentCont');
+      } else if (priority !== 3 && diff < 10) {
+        ul = document.getElementById('notImportantUrgentCont');
+      } else if (priority === 3 && diff > 10) {
+        ul = document.getElementById('importantNotUrgentCont');
+      } else if (priority !== 3 && diff > 10) {
+        ul = document.getElementById('notImportantNotUrgentCont');
+      }
+    
+      li.firstElementChild.rows[0].cells[2].firstElementChild.innerText = startDate.toISOString().split('T')[0];
+      li.firstElementChild.rows[0].cells[2].firstElementChild.style.display = 'block';
+
+      li.firstElementChild.rows[0].cells[3].firstElementChild.innerText = endDate.toISOString().split('T')[0];
+      li.firstElementChild.rows[0].cells[3].firstElementChild.style.display = 'block';
+
+    if (typeof idTask != 'undefined') {
+      li.firstElementChild.rows[0].cells[7].innerHTML = idTask;
+    }
+
+    li.firstElementChild.rows[0].cells[6].style.display = 'none';
+    li.firstElementChild.rows[0].cells[4].style.display = 'none';
+    li.firstElementChild.rows[0].cells[5].style.display = 'none';
+    li.style.height = '58px'
+
+    ul.appendChild(li);
+  }
+  }
 }

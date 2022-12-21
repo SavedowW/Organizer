@@ -257,193 +257,32 @@ $_SESSION['DBACCESS']->connect();
                                             <div id="urgency-box" class="scroll-container">
                                                 <table class="urgency-table">
                                                     <colgroup>
-                                                        <col span="1" style="width: 7.7%;">
-                                                        <col span="1" style="width: 7.7%;">
-                                                        <col span="1" style="width: 7.7%;">
-                                                        <col span="1" style="width: 7.7%;">
-                                                        <col span="1" style="width: 7.7%;">
-                                                        <col span="1" style="width: 7.7%;">
-                                                        <col span="1" style="width: 7.7%;">
-                                                        <col span="1" style="width: 7.7%; background-color: rgba(104, 104, 104, 0.747);">
-                                                        <col span="1" style="width: 7.7%;">
-                                                        <col span="1" style="width: 7.7%;">
-                                                        <col span="1" style="width: 7.7%;">
-                                                        <col span="1" style="width: 7.7%;">
-                                                        <col span="1" style="width: 7.7%;">
+                                                        <col span="1" style="width: 15%;">
+                                                        <col span="1" style="width: 42%;">
                                                      </colgroup>
                                                     <tbody>
                                                         <tr>
-                                                            <td rowspan="12">В<br>а<br>ж<br>н<br>о<br>с<br>т<br>ь</td>
-                                                            <td>10</td>
-                                                            <td c-i="10" c-u="0"></td>
-                                                            <td c-i="10" c-u="1"></td>
-                                                            <td c-i="10" c-u="2"></td>
-                                                            <td c-i="10" c-u="3"></td>
-                                                            <td c-i="10" c-u="4"></td>
-                                                            <td c-i="10" c-u="5"></td>
-                                                            <td c-i="10" c-u="6"></td>
-                                                            <td c-i="10" c-u="7"></td>
-                                                            <td c-i="10" c-u="8"></td>
-                                                            <td c-i="10" c-u="9"></td>
-                                                            <td c-i="10" c-u="10"></td>
+                                                            
+                                                            <td>Важно</td>
+                                                            <td c-i="1" c-u="0">
+                                                                <div id="importantUrgentCont"></div>
+                                                            </td>
+                                                            <td c-i="1" c-u="1">
+                                                                <div id="importantNotUrgentCont"></div>
+                                                            </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>9</td>
-                                                            <td c-i="9" c-u="0"></td>
-                                                            <td c-i="9" c-u="1"></td>
-                                                            <td c-i="9" c-u="2"></td>
-                                                            <td c-i="9" c-u="3"></td>
-                                                            <td c-i="9" c-u="4"></td>
-                                                            <td c-i="9" c-u="5"></td>
-                                                            <td c-i="9" c-u="6"></td>
-                                                            <td c-i="9" c-u="7"></td>
-                                                            <td c-i="9" c-u="8"></td>
-                                                            <td c-i="9" c-u="9"></td>
-                                                            <td c-i="9" c-u="10"></td>
+                                                            <td>Не важно</td>
+                                                            <td c-i="0" c-u="0">
+                                                                <div id="notImportantUrgentCont"></div>
+                                                            </td>
+                                                            <td c-i="0" c-u="1">
+                                                                <div id="notImportantNotUrgentCont"></div>
+                                                            </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>8</td>
-                                                            <td c-i="8" c-u="0"></td>
-                                                            <td c-i="8" c-u="1"></td>
-                                                            <td c-i="8" c-u="2"></td>
-                                                            <td c-i="8" c-u="3"></td>
-                                                            <td c-i="8" c-u="4"></td>
-                                                            <td c-i="8" c-u="5"></td>
-                                                            <td c-i="8" c-u="6"></td>
-                                                            <td c-i="8" c-u="7"></td>
-                                                            <td c-i="8" c-u="8"></td>
-                                                            <td c-i="8" c-u="9"></td>
-                                                            <td c-i="8" c-u="10"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>7</td>
-                                                            <td c-i="7" c-u="0"></td>
-                                                            <td c-i="7" c-u="1"></td>
-                                                            <td c-i="7" c-u="2"></td>
-                                                            <td c-i="7" c-u="3"></td>
-                                                            <td c-i="7" c-u="4"></td>
-                                                            <td c-i="7" c-u="5"></td>
-                                                            <td c-i="7" c-u="6"></td>
-                                                            <td c-i="7" c-u="7"></td>
-                                                            <td c-i="7" c-u="8"></td>
-                                                            <td c-i="7" c-u="9"></td>
-                                                            <td c-i="7" c-u="10"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>6</td>
-                                                            <td c-i="6" c-u="0"></td>
-                                                            <td c-i="6" c-u="1"></td>
-                                                            <td c-i="6" c-u="2"></td>
-                                                            <td c-i="6" c-u="3"></td>
-                                                            <td c-i="6" c-u="4"></td>
-                                                            <td c-i="6" c-u="5"></td>
-                                                            <td c-i="6" c-u="6"></td>
-                                                            <td c-i="6" c-u="7"></td>
-                                                            <td c-i="6" c-u="8"></td>
-                                                            <td c-i="6" c-u="9"></td>
-                                                            <td c-i="6" c-u="10"></td>
-                                                        </tr>
-                                                        <tr style=" background-color: rgba(104, 104, 104, 0.747);">
-                                                            <td>5</td>
-                                                            <td c-i="5" c-u="0"></td>
-                                                            <td c-i="5" c-u="1"></td>
-                                                            <td c-i="5" c-u="2"></td>
-                                                            <td c-i="5" c-u="3"></td>
-                                                            <td c-i="5" c-u="4"></td>
-                                                            <td c-i="5" c-u="5"></td>
-                                                            <td c-i="5" c-u="6"></td>
-                                                            <td c-i="5" c-u="7"></td>
-                                                            <td c-i="5" c-u="8"></td>
-                                                            <td c-i="5" c-u="9"></td>
-                                                            <td c-i="5" c-u="10"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>4</td>
-                                                            <td c-i="4" c-u="0"></td>
-                                                            <td c-i="4" c-u="1"></td>
-                                                            <td c-i="4" c-u="2"></td>
-                                                            <td c-i="4" c-u="3"></td>
-                                                            <td c-i="4" c-u="4"></td>
-                                                            <td c-i="4" c-u="5"></td>
-                                                            <td c-i="4" c-u="6"></td>
-                                                            <td c-i="4" c-u="7"></td>
-                                                            <td c-i="4" c-u="8"></td>
-                                                            <td c-i="4" c-u="9"></td>
-                                                            <td c-i="4" c-u="10"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>3</td>
-                                                            <td c-i="3" c-u="0"></td>
-                                                            <td c-i="3" c-u="1"></td>
-                                                            <td c-i="3" c-u="2"></td>
-                                                            <td c-i="3" c-u="3"></td>
-                                                            <td c-i="3" c-u="4"></td>
-                                                            <td c-i="3" c-u="5"></td>
-                                                            <td c-i="3" c-u="6"></td>
-                                                            <td c-i="3" c-u="7"></td>
-                                                            <td c-i="3" c-u="8"></td>
-                                                            <td c-i="3" c-u="9"></td>
-                                                            <td c-i="3" c-u="10"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>2</td>
-                                                            <td c-i="2" c-u="0"></td>
-                                                            <td c-i="2" c-u="1"></td>
-                                                            <td c-i="2" c-u="2"></td>
-                                                            <td c-i="2" c-u="3"></td>
-                                                            <td c-i="2" c-u="4"></td>
-                                                            <td c-i="2" c-u="5"></td>
-                                                            <td c-i="2" c-u="6"></td>
-                                                            <td c-i="2" c-u="7"></td>
-                                                            <td c-i="2" c-u="8"></td>
-                                                            <td c-i="2" c-u="9"></td>
-                                                            <td c-i="2" c-u="10"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td c-i="1" c-u="0"></td>
-                                                            <td c-i="1" c-u="1"></td>
-                                                            <td c-i="1" c-u="2"></td>
-                                                            <td c-i="1" c-u="3"></td>
-                                                            <td c-i="1" c-u="4"></td>
-                                                            <td c-i="1" c-u="5"></td>
-                                                            <td c-i="1" c-u="6"></td>
-                                                            <td c-i="1" c-u="7"></td>
-                                                            <td c-i="1" c-u="8"></td>
-                                                            <td c-i="1" c-u="9"></td>
-                                                            <td c-i="1" c-u="10"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>0</td>
-                                                            <td c-i="0" c-u="0"></td>
-                                                            <td c-i="0" c-u="1"></td>
-                                                            <td c-i="0" c-u="2"></td>
-                                                            <td c-i="0" c-u="3"></td>
-                                                            <td c-i="0" c-u="4"></td>
-                                                            <td c-i="0" c-u="5"></td>
-                                                            <td c-i="0" c-u="6"></td>
-                                                            <td c-i="0" c-u="7"></td>
-                                                            <td c-i="0" c-u="8"></td>
-                                                            <td c-i="0" c-u="9"></td>
-                                                            <td c-i="0" c-u="10"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td>0</td>
-                                                            <td>1</td>
-                                                            <td>2</td>
-                                                            <td>3</td>
-                                                            <td>4</td>
-                                                            <td>5</td>
-                                                            <td>6</td>
-                                                            <td>7</td>
-                                                            <td>8</td>
-                                                            <td>9</td>
-                                                            <td>10</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td colspan="12">Срочность</td>
+                                                            <td style="height: 15%;"></td>
+                                                            <td style="height: 15%;">Срочно</td>
+                                                            <td style="height: 15%;">Не срочно</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -522,6 +361,7 @@ $_SESSION['DBACCESS']->connect();
         if (userJSON != undefined && userJSON !='' && taskJSON != '\n    ') {
             displayTasks(taskJSON);
             displayTasksByPriority(taskJSON);
+            displayTasksInEizenTable(taskJSON);
         } 
 
         let reason = '<?php if (isset($_GET['reason'])) echo $_GET['reason']; else echo -1; ?>';
